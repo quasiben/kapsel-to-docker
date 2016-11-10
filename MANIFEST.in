@@ -1,0 +1,2 @@
+include versioneer.py
+include k2d/_version.py

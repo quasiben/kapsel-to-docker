@@ -1,0 +1,12 @@
+name: k2d
+channels:
+  - conda-kapsel
+dependencies:
+  - python=3.5
+  - conda-kapsel
+  - ipython
+  - click
+  - jinja2
+  - pytest
+  - pip:
+    - ipdb

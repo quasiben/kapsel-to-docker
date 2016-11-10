@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  movies_example:
+    build: .
+    image: k2d:v1
+    container_name: k2d_example
+    ports:
+      - "9006:5006"
+    environment:
+      - URL_PREFIX=toast

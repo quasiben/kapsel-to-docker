@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  {{SERVICE_NAME}}:
+    build: .
+    image: {{IMAGE_NAME}}:{{IMAGE_VERSION}}
+    container_name: {{ CONTAINER_NAME }}
+    ports:
+    {% for HOST_PORT, APP_PORT in PORT_TUPLES %}
+      - "{{HOST_PORT}}:{{APP_PORT}}"
+    {%- endfor -%}
+    environment:
+      {% for ENV_NAME, ENV_VALUE in ENV_TUPLES %}
+      - {{ENV_NAME}}={{ENV_VALUE}}
+      {% endfor %}
+    volume:
+      ./
