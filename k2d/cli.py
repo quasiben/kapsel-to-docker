@@ -36,17 +36,17 @@ def cli(ctx, log_level):
     ctx.obj = ctx.obj or {}
 
 
-@cli.group("create", short_help="create options")
+@cli.command("create", short_help="create options")
 @click.pass_context
-def create(ctx):
-    pass
-
-
-@create.group("-n", short_help="Launch new applications")
-@click.argument('f', type=click.Path(exists=True))
-@click.pass_context
-def launch(ctx):
-    pass
+@click.option("-d", required=True, type=click.Path(exists=True))
+def create(ctx, d):
+    click.echo("Building Dockerfile and docker-compose files")
+    with open('Dockerfile-k2d', 'w') as f:
+        template = core.create_dockerfile_template(DIR_PATH=d)
+        f.write(template)
+    with open('docker-compose-k2d.yml', 'w') as f:
+        template = core.create_docker_compose_template()
+        f.write(template)
 
 
 @cli.group("list", short_help="list k2d images")
